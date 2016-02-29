@@ -186,7 +186,7 @@
     "_enabled": true,
     "curTileX": 12,
     "curTileY": 24,
-    "radio": 1,
+    "radio": 2,
     "finalList": [],
     "hero": {
       "__id__": 6
@@ -294,10 +294,10 @@
     },
     "_clips": [
       {
-        "__uuid__": "ed401443-dd20-4a5d-85ef-6034d60509db"
+        "__uuid__": "7aea86a8-efcd-4247-8b6b-5944eea509c8"
       },
       {
-        "__uuid__": "7aea86a8-efcd-4247-8b6b-5944eea509c8"
+        "__uuid__": "ed401443-dd20-4a5d-85ef-6034d60509db"
       },
       {
         "__uuid__": "42e3073d-c5ad-4156-bf95-d87f9d578616"
@@ -352,7 +352,7 @@
     "asset": {
       "__uuid__": "093bbcc4-d370-4dfc-9817-95783d8762d3"
     },
-    "fileId": "77674n4YoBA3I8CLmoTxXJw"
+    "fileId": "dd82eGw1FxApYacqRaT4QMg"
   },
   {
     "__type__": "53038rVlEROoJRi49tj1dS5",

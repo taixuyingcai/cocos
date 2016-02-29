@@ -5,7 +5,7 @@ cc.Class({
 
     properties: {
         curTileX: 12,
-        curTileY: 24,
+        curTileY: 42,
 
         radio: 1,
         finalList: [],
@@ -16,13 +16,13 @@ cc.Class({
     },
 
     toMove: function toMove() {
-        if (this.finalList.lenght === 0) {
+        if (this.finalList.length === 0) {
             this._standHero();
             return;
         }
         var dir = this.finalList.shift();
 
-        this.node.runAction(cc.sequence(cc.callFunc(this._moveHero(dir.dx, dir.dy), this), cc.moveBy(this.radio * (dir.dx != 0 && dir.dy != 0 ? 1.4 : 1) / 10, -(dir.dx + dir.dy) * 32, (dir.dx - dir.dy) * 24), cc.callFunc(this.toMove, this)));
+        this.node.runAction(cc.sequence(cc.callFunc(this._moveHero(dir.dx, dir.dy), this), cc.moveBy(this.radio * (dir.dx != 0 && dir.dy != 0 ? 1.4 : 1) / 10, -(dir.dx + dir.dy) * 32, (dir.dy - dir.dx) * 24), cc.callFunc(this.toMove, this)));
     },
 
     _standHero: function _standHero() {

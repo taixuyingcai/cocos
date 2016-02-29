@@ -1,5 +1,5 @@
 cc._RFpush(module, 'f432aKUtGFFQpJvyun/GSHD', 'hero');
-// scripts\hero.js
+// scripts/hero.js
 
 'use strict';
 

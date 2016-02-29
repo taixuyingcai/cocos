@@ -14,7 +14,7 @@ cc.Class({
         var rawNewY = (oldX - oldY);
         
         var newX = Math.floor(rawNewX) + 1;
-        var newY = -Math.floor(-rawNewY) - 1;
+        var newY = -Math.floor(-(rawNewY)) - 1;
         
         return {
             newX: newX,
@@ -43,11 +43,12 @@ cc.Class({
         
         openList.push(start);
         
-        while(openList.lenght !== 0) {
+        while(openList.length !== 0) {
             openList.sort(this._sortF);
             var parent = openList.shift();
             closeList.push(parent);
             if (parent.h === 0) {
+                console.log(closeList.length);
                 break;
             }
             for(var i = -1; i <= 1; i++) {
@@ -57,16 +58,14 @@ cc.Class({
                     if (this.isInList(rawX, rawY, closeList)) {
                         continue;
                     }
-                    if (i === 0 && j === 0) {
-                        continue;
-                    }
+                    
                     var newG = parent.g + ((i !==0 && j !== 0) ? 14 : 10);
                     
                     var neibour = {
                         x: rawX,
                         y: rawY,
                         g: newG,
-                        h: (Math.abs(rawX - desTileX) + Math.abs(rawY - desTileY)) * 10,
+                        h: Math.max(Math.abs(rawX - desTileX), Math.abs(rawY - desTileY)) * 10,
                         p: parent
                     };
                     neibour.f = neibour.g + neibour.h;
@@ -80,11 +79,11 @@ cc.Class({
         var des = closeList.pop();
         while(des.p) {
             des.dx = des.x - des.p.x;
-            des.dy = des.p.y;
+            des.dy = des.y - des.p.y;
             console.log("dx="+ des.dx + ",dy="+des.dy);
             finalList.unshift(des);
             des = des.p;
-        }
+        };
         return finalList;
     },
     
