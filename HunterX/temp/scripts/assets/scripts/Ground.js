@@ -1,5 +1,5 @@
 cc._RFpush(module, 'd537a4Wwg1CdpHkmRm7Imr2', 'Ground');
-// scripts/Ground.js
+// scripts\Ground.js
 
 'use strict';
 
@@ -39,7 +39,7 @@ cc.Class({
     // use this for initialization
     onLoad: function onLoad() {
         var self = this;
-        var myUtil = this.getComponent('Util');
+        var myUtil = self.getComponent('Util');
         this.node.on('mouseup', function (event) {
             var myevent = new cc.Event.EventCustom('myClick', true);
             myevent.setUserData(event);
@@ -49,7 +49,6 @@ cc.Class({
             self.finalList = [];
 
             self.finalList = myUtil.convertToPath(myUtil.convertTo45(event), self.curTileX, self.curTileY);
-
             self.toMove();
         }, this);
     }

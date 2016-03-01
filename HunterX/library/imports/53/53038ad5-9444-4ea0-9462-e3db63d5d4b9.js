@@ -14,7 +14,7 @@ cc.Class({
         var rawNewY = oldX - oldY;
 
         var newX = Math.floor(rawNewX) + 1;
-        var newY = Math.floor(rawNewY) - 1;
+        var newY = -Math.floor(-rawNewY) - 1;
 
         return {
             newX: newX,
@@ -28,26 +28,26 @@ cc.Class({
         var finalList = [];
         var newX = newPos.newX;
         var newY = newPos.newY;
-        console.log("posx=" + newX + ",poxy=" + newY);
+        console.log("posx=" + newX + ",posy=" + newY);
         var start = {
             x: curTilePosX,
             y: curTilePosY,
             g: 0,
             h: (Math.abs(newX) + Math.abs(newY)) * 10,
-            f: this.g + this.h,
             p: null
         };
+        start.f = start.g + start.h;
 
         var desTileX = start.x + newX;
         var desTileY = start.y + newY;
 
         openList.push(start);
 
-        while (openList.lenght != 0) {
+        while (openList.lenght !== 0) {
             openList.sort(this._sortF);
             var parent = openList.shift();
             closeList.push(parent);
-            if (parent.h == 0) {
+            if (parent.h === 0) {
                 break;
             }
             for (var i = -1; i <= 1; i++) {
@@ -57,16 +57,20 @@ cc.Class({
                     if (this.isInList(rawX, rawY, closeList)) {
                         continue;
                     }
-                    var newG = parent.g + (i != 0 && j != 0 ? 14 : 10);
+                    if (i === 0 && j === 0) {
+                        continue;
+                    }
+                    var newG = parent.g + (i !== 0 && j !== 0 ? 14 : 10);
 
                     var neibour = {
                         x: rawX,
                         y: rawY,
                         g: newG,
                         h: (Math.abs(rawX - desTileX) + Math.abs(rawY - desTileY)) * 10,
-                        f: this.g + this.h,
                         p: parent
                     };
+                    neibour.f = neibour.g + neibour.h;
+
                     openList.push(neibour);
                 }
             }
